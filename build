@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+./configure \
+                 --gnutls \
+                 --idn \
+                 --bdb \
+                 --gdbm \
+                 --gpgme \
+                 --gss \
+                 --locales-fix \
+                 --lua \
+                 --notmuch \
+                 --sasl \
+                 --sqlite \
+                 --testing \
+                 --with-mailpath=/var/mail \
+                 --with-ui=ncurses \
+                 --zstd
+#                 --coverage \
+#                 --debug-backtrace \
+#                 --debug-parse-test \
+
+LOCAL=$HOME/.local
+make DESTDIR=$LOCAL PKGDATADIR="$LOCAL/share/neomutt" SYSCONFDIR="$LOCAL/etc" install
