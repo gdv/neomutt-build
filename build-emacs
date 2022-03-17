@@ -1,0 +1,16 @@
+#!/bin/sh -e
+
+test -f configure || ./autogen.sh
+
+./configure \
+    --with-cairo \
+    --with-mailutils \
+    --with-x-toolkit=gtk2 \
+    --with-json \
+    --without-gpm \
+    --without-sound \
+    --without-tiff \
+    --without-wide-int \
+    --prefix=$HOME/.local
+
+make install
