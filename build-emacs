@@ -1,16 +1,25 @@
 #!/bin/sh -e
 
-test -f configure || ./autogen.sh
-
+./autogen.sh
 ./configure \
+    --disable-acl \
+    --disable-gc-mark-trace \
     --with-cairo \
     --with-mailutils \
-    --with-x-toolkit=gtk2 \
-    --with-json \
+    --with-x-toolkit=lucid \
+    --with-x \
+    --without-gconf \
     --without-gpm \
     --without-sound \
     --without-tiff \
     --without-wide-int \
-    --prefix=$HOME/.local
+    --without-xaw3d \
+    --with-modules \
+    --with-file-notification=yes \
+    --with-native-compilation=aot \
+    --with-tree-sitter \
+    --prefix=$HOME/.local \
+    CFLAGS="-O2 -mtune=native -march=native -fomit-frame-pointer"
 
+make -j4
 make install
