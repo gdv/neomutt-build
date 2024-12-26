@@ -1,25 +1,25 @@
 #!/bin/sh
 set -e
 
-./configure \
-                 --gnutls \
-                 --idn \
-                 --bdb \
-                 --gdbm \
-                 --gpgme \
-                 --gss \
-                 --locales-fix \
-                 --lua \
-                 --notmuch \
-                 --sasl \
-                 --sqlite \
-                 --testing \
-                 --with-mailpath=/var/mail \
-                 --with-ui=ncurses \
-                 --zstd
-#                 --coverage \
-#                 --debug-backtrace \
-#                 --debug-parse-test \
+./configure --debug \
+    --autocrypt \
+    --gnutls \
+    --gpgme \
+    --gsasl \
+    --gss \
+    --lmdb \
+    --lz4 \
+    --notmuch \
+    --with-notmuch=/usr/include \
+    --pcre2 \
+    --sqlite \
+    --tokyocabinet \
+    --zlib \
+    --zstd \
+    --disable-doc \
+    --locales-fix \
+    --disable-nls \
+    --sqlite
 
 LOCAL=$HOME/.local
 make DESTDIR=$LOCAL PKGDATADIR="$LOCAL/share/neomutt" SYSCONFDIR="$LOCAL/etc" install
